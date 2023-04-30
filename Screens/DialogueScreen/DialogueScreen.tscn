@@ -1,0 +1,113 @@
+[gd_scene load_steps=7 format=3 uid="uid://brerrqypm427w"]
+
+[ext_resource type="Script" path="res://Screens/DialogueScreen/DialogueScreen.gd" id="1_p65qq"]
+[ext_resource type="Texture2D" uid="uid://c5d5njps3wbw1" path="res://Assets/UI/AvatarBack.png" id="2_3ssql"]
+[ext_resource type="Texture2D" uid="uid://13mfqedacmq4" path="res://Assets/Enemies/Crown.png" id="3_p2hex"]
+[ext_resource type="Texture2D" uid="uid://dl7dvduc7plr8" path="res://Assets/UI/enemy_desc.png" id="4_m7dnb"]
+[ext_resource type="FontFile" uid="uid://cij3r0av1rgas" path="res://Assets/Fonts/PatrickHand-Regular.ttf" id="5_awbh0"]
+[ext_resource type="Texture2D" uid="uid://de5dbjp04tytd" path="res://Assets/UI/LeftClick.png" id="6_t6jcr"]
+
+[node name="DialogueScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p65qq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AvatarBack" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 270.0
+offset_right = 179.0
+offset_bottom = 370.0
+scale = Vector2(2, 2)
+mouse_filter = 2
+texture = ExtResource("2_3ssql")
+
+[node name="Avatar" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 303.0
+offset_right = 228.0
+offset_bottom = 403.0
+mouse_filter = 2
+texture = ExtResource("3_p2hex")
+
+[node name="Panel" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 284.0
+offset_top = 337.0
+offset_right = 484.0
+offset_bottom = 377.0
+scale = Vector2(3, 3)
+mouse_filter = 2
+texture = ExtResource("4_m7dnb")
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -17.0
+offset_top = 409.0
+offset_right = 373.0
+offset_bottom = 475.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_fonts/normal_font = ExtResource("5_awbh0")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]The Crown"
+
+[node name="Text" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 356.0
+offset_right = 850.0
+offset_bottom = 441.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_constants/line_separation = -6
+theme_override_fonts/normal_font = ExtResource("5_awbh0")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Line 1
+Line 2"
+
+[node name="ActionMessage" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -783.0
+offset_top = -7.0
+offset_right = -743.0
+offset_bottom = 33.0
+mouse_filter = 2
+
+[node name="Text" type="RichTextLabel" parent="ActionMessage"]
+layout_mode = 0
+offset_left = 846.0
+offset_top = 17.0
+offset_right = 1053.0
+offset_bottom = 73.0
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_fonts/normal_font = ExtResource("5_awbh0")
+theme_override_font_sizes/normal_font_size = 32
+text = "Click to continue"
+
+[node name="TextureRect" type="TextureRect" parent="ActionMessage"]
+layout_mode = 0
+offset_left = 798.0
+offset_top = 21.0
+offset_right = 838.0
+offset_bottom = 61.0
+texture = ExtResource("6_t6jcr")
+
+[connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]

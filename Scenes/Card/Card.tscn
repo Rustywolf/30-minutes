@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvji02e64f5v2"]
+
+[ext_resource type="Script" path="res://Scenes/Card/Card.gd" id="1_ywgai"]
+[ext_resource type="Texture2D" uid="uid://e1jurep6blyy" path="res://Assets/Art/FireStrike.png" id="2_4oxns"]
+[ext_resource type="Texture2D" uid="uid://bapxksyd8cq6g" path="res://Assets/Frames/Attack.png" id="3_vh3fq"]
+[ext_resource type="FontFile" uid="uid://cij3r0av1rgas" path="res://Assets/Fonts/PatrickHand-Regular.ttf" id="4_nj6y6"]
+
+[node name="Card" type="Control"]
+custom_minimum_size = Vector2(150, 210)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ywgai")
+
+[node name="Art" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 13.0
+offset_right = 144.0
+offset_bottom = 96.0
+mouse_filter = 2
+texture = ExtResource("2_4oxns")
+
+[node name="Frame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_vh3fq")
+
+[node name="Cost" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_right = 67.0
+offset_bottom = 55.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.231373, 0.192157, 0.235294, 1)
+theme_override_fonts/normal_font = ExtResource("4_nj6y6")
+theme_override_font_sizes/normal_font_size = 30
+text = "3"
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 97.0
+offset_right = 137.0
+offset_bottom = 122.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.231373, 0.192157, 0.235294, 1)
+theme_override_fonts/normal_font = ExtResource("4_nj6y6")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[center]Fire Strike"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 121.0
+offset_right = 140.0
+offset_bottom = 200.0
+mouse_filter = 2
+
+[node name="Description" type="RichTextLabel" parent="CenterContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.929412, 0.847059, 0.741176, 1)
+theme_override_constants/line_separation = -3
+theme_override_fonts/normal_font = ExtResource("4_nj6y6")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "[center]Deal 3 damage for each card in hand, then Stun the enemy on 15 or more damage dealt"
+fit_content = true
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

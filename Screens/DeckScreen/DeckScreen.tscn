@@ -1,0 +1,129 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctynei5wch53d"]
+
+[ext_resource type="Script" path="res://Screens/DeckScreen/DeckScreen.gd" id="1_acoil"]
+[ext_resource type="PackedScene" uid="uid://c7vit2ovt8t1d" path="res://Screens/DeckScreen/DeckCardOption/DeckCardOption.tscn" id="2_aftw6"]
+[ext_resource type="PackedScene" uid="uid://en756g0pv54m" path="res://Screens/DeckScreen/DeckCardSelection/DeckCardSelection.tscn" id="3_2u0fg"]
+[ext_resource type="PackedScene" uid="uid://do0u8rms012qr" path="res://Scenes/RoundButton/RoundButton.tscn" id="4_nbyvo"]
+
+[node name="DecKScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_acoil")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.380392)
+
+[node name="Options" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -305.0
+offset_top = -280.0
+offset_right = 305.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 20
+columns = 6
+
+[node name="DeckCardOption" parent="Options" instance=ExtResource("2_aftw6")]
+layout_mode = 2
+
+[node name="DeckCardOption2" parent="Options" instance=ExtResource("2_aftw6")]
+layout_mode = 2
+
+[node name="DeckCardOption3" parent="Options" instance=ExtResource("2_aftw6")]
+layout_mode = 2
+
+[node name="DeckCardOption4" parent="Options" instance=ExtResource("2_aftw6")]
+layout_mode = 2
+
+[node name="DeckCardOption5" parent="Options" instance=ExtResource("2_aftw6")]
+layout_mode = 2
+
+[node name="DeckCardOption6" parent="Options" instance=ExtResource("2_aftw6")]
+layout_mode = 2
+
+[node name="DeckCardOption7" parent="Options" instance=ExtResource("2_aftw6")]
+layout_mode = 2
+
+[node name="DeckCardOption8" parent="Options" instance=ExtResource("2_aftw6")]
+layout_mode = 2
+
+[node name="DeckCardOption9" parent="Options" instance=ExtResource("2_aftw6")]
+layout_mode = 2
+
+[node name="DeckCardOption10" parent="Options" instance=ExtResource("2_aftw6")]
+layout_mode = 2
+
+[node name="DeckCardOption11" parent="Options" instance=ExtResource("2_aftw6")]
+layout_mode = 2
+
+[node name="DeckCardOption12" parent="Options" instance=ExtResource("2_aftw6")]
+layout_mode = 2
+
+[node name="Selected" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -284.0
+offset_top = 36.0
+offset_right = 423.0
+offset_bottom = 141.0
+grow_horizontal = 2
+theme_override_constants/separation = -15
+
+[node name="DeckCardSelection" parent="Selected" instance=ExtResource("3_2u0fg")]
+layout_mode = 2
+
+[node name="DeckCardSelection2" parent="Selected" instance=ExtResource("3_2u0fg")]
+layout_mode = 2
+
+[node name="DeckCardSelection3" parent="Selected" instance=ExtResource("3_2u0fg")]
+layout_mode = 2
+
+[node name="DeckCardSelection4" parent="Selected" instance=ExtResource("3_2u0fg")]
+layout_mode = 2
+
+[node name="DeckCardSelection5" parent="Selected" instance=ExtResource("3_2u0fg")]
+layout_mode = 2
+
+[node name="DeckCardSelection6" parent="Selected" instance=ExtResource("3_2u0fg")]
+layout_mode = 2
+
+[node name="DeckCardSelection7" parent="Selected" instance=ExtResource("3_2u0fg")]
+layout_mode = 2
+
+[node name="DeckCardSelection8" parent="Selected" instance=ExtResource("3_2u0fg")]
+layout_mode = 2
+
+[node name="DeckCardSelection9" parent="Selected" instance=ExtResource("3_2u0fg")]
+layout_mode = 2
+
+[node name="RoundButton" parent="." instance=ExtResource("4_nbyvo")]
+layout_mode = 1
+offset_left = 823.0
+offset_top = 335.0
+offset_right = -73.0
+offset_bottom = -81.0
+scale = Vector2(1.5, 1.5)
+text = "Start"
+enabled = true
+
+[connection signal="pressed" from="RoundButton" to="." method="_on_round_button_pressed"]

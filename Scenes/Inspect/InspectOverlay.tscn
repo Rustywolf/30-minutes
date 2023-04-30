@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfjrd2hs48jt1"]
+
+[ext_resource type="Script" path="res://Scenes/Inspect/Inspect.gd" id="1_3sp3x"]
+[ext_resource type="PackedScene" uid="uid://dvji02e64f5v2" path="res://Scenes/Card/Card.tscn" id="2_owg4p"]
+[ext_resource type="FontFile" uid="uid://cij3r0av1rgas" path="res://Assets/Fonts/PatrickHand-Regular.ttf" id="3_fh5q8"]
+[ext_resource type="Texture2D" uid="uid://de5dbjp04tytd" path="res://Assets/UI/LeftClick.png" id="4_spj3a"]
+
+[node name="Inspect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3sp3x")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.607843)
+
+[node name="Card" parent="." instance=ExtResource("2_owg4p")]
+offset_left = 330.0
+offset_top = 30.0
+offset_right = 480.0
+offset_bottom = 240.0
+scale = Vector2(2, 2)
+mouse_filter = 2
+
+[node name="Text" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -892.0
+offset_top = 11.0
+offset_right = -726.0
+offset_bottom = 71.0
+grow_horizontal = 0
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_fonts/normal_font = ExtResource("3_fh5q8")
+theme_override_font_sizes/normal_font_size = 32
+text = "Click to close"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 15.0
+offset_right = 60.0
+offset_bottom = 55.0
+texture = ExtResource("4_spj3a")
+
+[connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]

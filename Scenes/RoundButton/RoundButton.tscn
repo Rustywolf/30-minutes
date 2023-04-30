@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://do0u8rms012qr"]
+
+[ext_resource type="Script" path="res://Scenes/RoundButton/RoundButton.gd" id="1_m2flq"]
+[ext_resource type="Texture2D" uid="uid://d0q5ath3gflxa" path="res://Assets/UI/Button_off.png" id="2_bbeg1"]
+[ext_resource type="Texture2D" uid="uid://d28nqynlblivl" path="res://Assets/UI/Button_on.png" id="3_jn0mi"]
+[ext_resource type="Texture2D" uid="uid://dlqrqr68wu7yx" path="res://Assets/UI/Button_hover.png" id="4_nlxdo"]
+[ext_resource type="FontFile" uid="uid://cij3r0av1rgas" path="res://Assets/Fonts/PatrickHand-Regular.ttf" id="5_r2xol"]
+
+[node name="RoundButton" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -896.0
+offset_bottom = -416.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+script = ExtResource("1_m2flq")
+
+[node name="Off" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("2_bbeg1")
+
+[node name="On" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 2
+texture = ExtResource("3_jn0mi")
+
+[node name="Hover" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("4_nlxdo")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_right = 54.0
+offset_bottom = 61.0
+
+[node name="Text" type="RichTextLabel" parent="CenterContainer"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.164706, 0.113725, 0.0509804, 1)
+theme_override_constants/line_separation = -10
+theme_override_fonts/normal_font = ExtResource("5_r2xol")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[center]Test"
+fit_content = true
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

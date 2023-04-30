@@ -1,0 +1,491 @@
+[gd_scene load_steps=17 format=3 uid="uid://chn1yr166hgmj"]
+
+[ext_resource type="Script" path="res://Screens/CombatScreen/CombatScreen.gd" id="1_sbb46"]
+[ext_resource type="PackedScene" uid="uid://dyd7835cynxuu" path="res://Screens/CombatScreen/Hand/Hand.tscn" id="2_yppce"]
+[ext_resource type="Texture2D" uid="uid://13mfqedacmq4" path="res://Assets/Enemies/Crown.png" id="3_c7lok"]
+[ext_resource type="Texture2D" uid="uid://d0tuo1g8x88r0" path="res://Assets/UI/energy.png" id="3_xmp2j"]
+[ext_resource type="FontFile" uid="uid://cij3r0av1rgas" path="res://Assets/Fonts/PatrickHand-Regular.ttf" id="4_agjg6"]
+[ext_resource type="Texture2D" uid="uid://c5d5njps3wbw1" path="res://Assets/UI/AvatarBack.png" id="5_lfcrw"]
+[ext_resource type="Texture2D" uid="uid://dl7dvduc7plr8" path="res://Assets/UI/enemy_desc.png" id="5_ol1cg"]
+[ext_resource type="Texture2D" uid="uid://diawdrdfcnwdj" path="res://Assets/UI/hp_empty.png" id="6_xigv8"]
+[ext_resource type="Texture2D" uid="uid://sr2f2adegueg" path="res://Assets/UI/hp_full.png" id="7_kwsdm"]
+[ext_resource type="Texture2D" uid="uid://cl0icjs2u8rw2" path="res://Assets/UI/Block.png" id="8_0ug3c"]
+[ext_resource type="Texture2D" uid="uid://bt06qi264dx5w" path="res://Assets/UI/mana_empty.png" id="8_23mi3"]
+[ext_resource type="Texture2D" uid="uid://bqyrpi40x1608" path="res://Assets/UI/mana_full.png" id="9_6hhfu"]
+[ext_resource type="Texture2D" uid="uid://bp0vjq4xdj4uw" path="res://Assets/UI/Deck.png" id="11_8sfhn"]
+[ext_resource type="PackedScene" uid="uid://do0u8rms012qr" path="res://Scenes/RoundButton/RoundButton.tscn" id="13_fue8x"]
+
+[sub_resource type="Animation" id="Animation_djlm2"]
+resource_name = "EndGame"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EndGame:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EndGame/Fade:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_end_animation"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_usiqg"]
+_data = {
+"EndGame": SubResource("Animation_djlm2")
+}
+
+[node name="CombatScreen" type="Control"]
+custom_minimum_size = Vector2(960, 480)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sbb46")
+
+[node name="Enemy" type="Control" parent="."]
+custom_minimum_size = Vector2(960, 480)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -240.0
+offset_right = 480.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AvatarBack" type="TextureRect" parent="Enemy"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.538
+anchor_top = 0.604
+anchor_right = 0.538
+anchor_bottom = 0.604
+offset_left = -340.48
+offset_top = -279.92
+offset_right = -240.48
+offset_bottom = -179.92
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("5_lfcrw")
+
+[node name="Avatar" type="TextureRect" parent="Enemy"]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 28.0
+offset_right = 277.0
+offset_bottom = 92.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_c7lok")
+
+[node name="Title" type="RichTextLabel" parent="Enemy"]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 146.0
+offset_right = 471.0
+offset_bottom = 212.0
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_fonts/normal_font = ExtResource("4_agjg6")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]The King"
+
+[node name="HP" type="TextureProgressBar" parent="Enemy"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -102.0
+offset_top = 14.0
+offset_right = 98.0
+offset_bottom = 54.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+value = 100.0
+texture_under = ExtResource("6_xigv8")
+texture_progress = ExtResource("7_kwsdm")
+texture_progress_offset = Vector2(6, 4)
+
+[node name="TextureRect" type="TextureRect" parent="Enemy"]
+layout_mode = 0
+offset_left = 383.0
+offset_top = 98.0
+offset_right = 583.0
+offset_bottom = 138.0
+scale = Vector2(2, 2)
+texture = ExtResource("5_ol1cg")
+
+[node name="HPText" type="RichTextLabel" parent="Enemy"]
+layout_mode = 0
+offset_left = 383.0
+offset_top = 26.0
+offset_right = 773.0
+offset_bottom = 92.0
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_fonts/normal_font = ExtResource("4_agjg6")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]100 / 100"
+
+[node name="TextureRect2" type="TextureRect" parent="Enemy"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Plan" type="CenterContainer" parent="Enemy"]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 106.0
+offset_right = 766.0
+offset_bottom = 166.0
+
+[node name="Text" type="RichTextLabel" parent="Enemy/Plan"]
+custom_minimum_size = Vector2(365, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_constants/line_separation = -8
+theme_override_fonts/normal_font = ExtResource("4_agjg6")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Burns for %s damage, healing %s in the process. Stunned if takes %s damage."
+fit_content = true
+scroll_active = false
+
+[node name="Block" type="Control" parent="Enemy"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BlockShield" type="TextureRect" parent="Enemy/Block"]
+layout_mode = 0
+offset_left = 691.0
+offset_top = 8.0
+offset_right = 766.0
+offset_bottom = 83.0
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("8_0ug3c")
+
+[node name="BlockText" type="RichTextLabel" parent="Enemy/Block"]
+layout_mode = 0
+offset_left = 711.0
+offset_top = 16.0
+offset_right = 767.0
+offset_bottom = 82.0
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_fonts/normal_font = ExtResource("4_agjg6")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[center]10"
+
+[node name="Player" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HP" type="TextureProgressBar" parent="Player"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 269.0
+offset_right = 209.0
+offset_bottom = 309.0
+value = 100.0
+texture_under = ExtResource("6_xigv8")
+texture_progress = ExtResource("7_kwsdm")
+texture_progress_offset = Vector2(6, 4)
+
+[node name="HPText" type="RichTextLabel" parent="Player"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 274.0
+offset_right = 206.0
+offset_bottom = 305.0
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_fonts/normal_font = ExtResource("4_agjg6")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]100 / 100"
+
+[node name="Mana" type="TextureProgressBar" parent="Player"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 314.0
+offset_right = 210.0
+offset_bottom = 354.0
+max_value = 20.0
+value = 20.0
+texture_under = ExtResource("8_23mi3")
+texture_progress = ExtResource("9_6hhfu")
+texture_progress_offset = Vector2(6, 4)
+
+[node name="ManaText" type="RichTextLabel" parent="Player"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 319.0
+offset_right = 208.0
+offset_bottom = 350.0
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_fonts/normal_font = ExtResource("4_agjg6")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]100 / 100"
+
+[node name="Energy" type="Control" parent="Player"]
+anchors_preset = 0
+offset_left = -21.0
+offset_top = 11.0
+offset_right = 19.0
+offset_bottom = 51.0
+
+[node name="EnergyIcon" type="TextureRect" parent="Player/Energy"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 342.0
+offset_right = 93.0
+offset_bottom = 406.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_xmp2j")
+
+[node name="EnergyText" type="RichTextLabel" parent="Player/Energy"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 417.0
+offset_right = 181.0
+offset_bottom = 469.0
+theme_override_colors/default_color = Color(0.231373, 0.192157, 0.235294, 1)
+theme_override_fonts/normal_font = ExtResource("4_agjg6")
+theme_override_font_sizes/normal_font_size = 24
+text = "Energy"
+
+[node name="EnergyAmount" type="RichTextLabel" parent="Player/Energy"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 348.0
+offset_right = 202.0
+offset_bottom = 468.0
+theme_override_colors/default_color = Color(0.231373, 0.192157, 0.235294, 1)
+theme_override_fonts/normal_font = ExtResource("4_agjg6")
+theme_override_font_sizes/normal_font_size = 64
+text = "3"
+
+[node name="Block" type="Control" parent="Player"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BlockShield" type="TextureRect" parent="Player/Block"]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 264.0
+offset_right = 231.0
+offset_bottom = 339.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_0ug3c")
+
+[node name="BlockText" type="RichTextLabel" parent="Player/Block"]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 268.0
+offset_right = 211.0
+offset_bottom = 334.0
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_fonts/normal_font = ExtResource("4_agjg6")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[center]10"
+
+[node name="Hand" parent="." instance=ExtResource("2_yppce")]
+layout_mode = 1
+
+[node name="CardInfo" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -4.0
+offset_top = -336.0
+offset_right = 36.0
+offset_bottom = -296.0
+
+[node name="Deck" type="Control" parent="CardInfo"]
+anchors_preset = 0
+offset_left = -20.0
+offset_top = -29.0
+offset_right = 20.0
+offset_bottom = 11.0
+
+[node name="Deck" type="TextureRect" parent="CardInfo/Deck"]
+layout_mode = 0
+offset_left = 809.0
+offset_top = 376.0
+offset_right = 873.0
+offset_bottom = 440.0
+texture = ExtResource("11_8sfhn")
+
+[node name="Count" type="RichTextLabel" parent="CardInfo/Deck"]
+layout_mode = 0
+offset_left = 830.0
+offset_top = 377.0
+offset_right = 950.0
+offset_bottom = 448.0
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_fonts/normal_font = ExtResource("4_agjg6")
+theme_override_font_sizes/normal_font_size = 48
+text = "7
+"
+
+[node name="Desc" type="RichTextLabel" parent="CardInfo/Deck"]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 384.0
+offset_right = 990.0
+offset_bottom = 455.0
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_fonts/normal_font = ExtResource("4_agjg6")
+theme_override_font_sizes/normal_font_size = 36
+text = "Deck"
+
+[node name="Discard" type="Control" parent="CardInfo"]
+anchors_preset = 0
+offset_left = -20.0
+offset_top = 35.0
+offset_right = 20.0
+offset_bottom = 75.0
+
+[node name="Deck" type="TextureRect" parent="CardInfo/Discard"]
+modulate = Color(0.560784, 0.560784, 0.560784, 0.623529)
+layout_mode = 0
+offset_left = 809.0
+offset_top = 376.0
+offset_right = 873.0
+offset_bottom = 440.0
+texture = ExtResource("11_8sfhn")
+
+[node name="Count" type="RichTextLabel" parent="CardInfo/Discard"]
+layout_mode = 0
+offset_left = 830.0
+offset_top = 377.0
+offset_right = 950.0
+offset_bottom = 448.0
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_fonts/normal_font = ExtResource("4_agjg6")
+theme_override_font_sizes/normal_font_size = 48
+text = "7
+"
+
+[node name="Desc" type="RichTextLabel" parent="CardInfo/Discard"]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 384.0
+offset_right = 990.0
+offset_bottom = 455.0
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_fonts/normal_font = ExtResource("4_agjg6")
+theme_override_font_sizes/normal_font_size = 36
+text = "Discard"
+
+[node name="EndTurn" parent="." instance=ExtResource("13_fue8x")]
+layout_mode = 1
+offset_left = 811.0
+offset_top = 339.0
+offset_right = -85.0
+offset_bottom = -77.0
+scale = Vector2(2, 2)
+text = "End Turn"
+enabled = true
+
+[node name="EndGame" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fade" type="ColorRect" parent="EndGame"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VictoryText" type="CenterContainer" parent="EndGame"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Text" type="RichTextLabel" parent="EndGame/VictoryText"]
+custom_minimum_size = Vector2(960, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.666667, 0.913725, 0.423529, 1)
+theme_override_fonts/normal_font = ExtResource("4_agjg6")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]VICTORY"
+fit_content = true
+
+[node name="DefeatText" type="CenterContainer" parent="EndGame"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Text" type="RichTextLabel" parent="EndGame/DefeatText"]
+custom_minimum_size = Vector2(960, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.847059, 0.247059, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("4_agjg6")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]DEFEAT"
+fit_content = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_usiqg")
+}
+
+[connection signal="pressed" from="EndTurn" to="." method="_on_end_turn_pressed"]

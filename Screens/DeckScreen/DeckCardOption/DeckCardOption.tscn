@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7vit2ovt8t1d"]
+
+[ext_resource type="Script" path="res://Screens/DeckScreen/DeckCardOption/DeckCardOption.gd" id="1_nrt1m"]
+[ext_resource type="PackedScene" uid="uid://dvji02e64f5v2" path="res://Scenes/Card/Card.tscn" id="2_fkebo"]
+
+[node name="DeckCardOption" type="Control"]
+custom_minimum_size = Vector2(75, 105)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nrt1m")
+
+[node name="Shadow2" parent="." instance=ExtResource("2_fkebo")]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 130.0
+offset_bottom = 190.0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="Shadow1" parent="." instance=ExtResource("2_fkebo")]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 140.0
+offset_bottom = 200.0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="Card" parent="." instance=ExtResource("2_fkebo")]
+scale = Vector2(0.5, 0.5)
+
+[connection signal="gui_input" from="Card" to="." method="_on_card_gui_input"]
+[connection signal="mouse_entered" from="Card" to="." method="_on_card_mouse_entered"]
+[connection signal="mouse_exited" from="Card" to="." method="_on_card_mouse_exited"]

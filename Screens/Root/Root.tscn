@@ -1,0 +1,142 @@
+[gd_scene load_steps=9 format=3 uid="uid://bkghlneiaa4m8"]
+
+[ext_resource type="PackedScene" uid="uid://d1j0g66ch2w8k" path="res://Screens/MainScreen/MenuScreen.tscn" id="1_4xv42"]
+[ext_resource type="Script" path="res://Screens/Root/Root.gd" id="1_axkdd"]
+[ext_resource type="FontFile" uid="uid://cij3r0av1rgas" path="res://Assets/Fonts/PatrickHand-Regular.ttf" id="3_m5tv3"]
+[ext_resource type="Texture2D" uid="uid://cqa0h7dh3udco" path="res://Assets/UI/Background.png" id="4_bvuiy"]
+[ext_resource type="Texture2D" uid="uid://cpnokxs7p4wy" path="res://Assets/UI/RightClick.png" id="5_nq23r"]
+[ext_resource type="Texture2D" uid="uid://de5dbjp04tytd" path="res://Assets/UI/LeftClick.png" id="6_ls3ef"]
+
+[sub_resource type="Animation" id="Animation_a6mi8"]
+resource_name = "Transition"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1.62451, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_swap"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:mouse_filter")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ygpcu"]
+_data = {
+"Transition": SubResource("Animation_a6mi8")
+}
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_axkdd")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 480.0
+texture = ExtResource("4_bvuiy")
+
+[node name="MenuScreen" parent="." instance=ExtResource("1_4xv42")]
+layout_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ygpcu")
+}
+
+[node name="InspectMessage" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_left = -782.0
+offset_top = -7.0
+offset_right = -742.0
+offset_bottom = 33.0
+
+[node name="Text" type="RichTextLabel" parent="InspectMessage"]
+layout_mode = 0
+offset_left = 846.0
+offset_top = 17.0
+offset_right = 983.0
+offset_bottom = 73.0
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_fonts/normal_font = ExtResource("3_m5tv3")
+theme_override_font_sizes/normal_font_size = 32
+text = "Inspect"
+
+[node name="TextureRect" type="TextureRect" parent="InspectMessage"]
+layout_mode = 0
+offset_left = 798.0
+offset_top = 21.0
+offset_right = 838.0
+offset_bottom = 61.0
+texture = ExtResource("5_nq23r")
+
+[node name="ActionMessage" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_left = -782.0
+offset_top = 43.0
+offset_right = -742.0
+offset_bottom = 83.0
+
+[node name="Text" type="RichTextLabel" parent="ActionMessage"]
+layout_mode = 0
+offset_left = 846.0
+offset_top = 17.0
+offset_right = 983.0
+offset_bottom = 73.0
+theme_override_colors/default_color = Color(0.937255, 0.847059, 0.631373, 1)
+theme_override_fonts/normal_font = ExtResource("3_m5tv3")
+theme_override_font_sizes/normal_font_size = 32
+text = "Inspect"
+
+[node name="TextureRect" type="TextureRect" parent="ActionMessage"]
+layout_mode = 0
+offset_left = 798.0
+offset_top = 21.0
+offset_right = 838.0
+offset_bottom = 61.0
+texture = ExtResource("6_ls3ef")
