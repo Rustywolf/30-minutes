@@ -104,7 +104,6 @@ func enemy_turn():
 	resolving = true
 	emit_signal("resolving_updated")
 	
-	enemy_damage_this_turn = 0
 	enemy_block = 0
 	emit_signal("enemy_block_updated")
 	
@@ -122,6 +121,7 @@ func enemy_turn():
 	enemy_phase = (enemy_phase + 1) % len(enemy_model.run)
 	emit_signal("enemy_phase_updated")
 	
+	enemy_damage_this_turn = 0
 	player_turn()
 	
 
