@@ -112,7 +112,7 @@ extends Node
 	func(helper): 
 		return "Deal %s damage\n(%s for every %s played.)" % \
 			[helper.damage((Constants.game.player_magic_missiles_cast if Constants.game != null else 0) * 2 + 2), 
-			helper.damage(2), helper.highlight("Magic Missiles")],
+			helper.damage(2, true), helper.highlight("Magic Missiles")],
 	func(game: Game):
 		game.player_magic_missiles_cast += 1
 		game.emit_signal("player_passives_updated")
